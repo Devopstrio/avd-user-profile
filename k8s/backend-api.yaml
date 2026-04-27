@@ -1,0 +1,92 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: profile-api
+  namespace: avd-profile-prod
+  labels:
+    app: profile-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: profile-api
+  template:
+    metadata:
+      labels:
+        app: profile-api
+    spec:
+      containers:
+      - name: gateway
+        image: acrprofile.azurecr.io/devopstrio/profile-api:v1.0.0
+        ports:
+        - containerPort: 8000
+        env:
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: profile-secrets
+              key: db-url
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "512Mi"
+          limits:
+            cpu: "1000m"
+            memory: "1Gi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: profile-api-svc
+  namespace: avd-profile-prod
+spec:
+  selector:
+    app: profile-api
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8000
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: profile-engine
+  namespace: avd-profile-prod
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      component: profile-engine
+  template:
+    metadata:
+      labels:
+        component: profile-engine
+    spec:
+      containers:
+      - name: worker
+        image: acrprofile.azurecr.io/devopstrio/profile-engine:latest
+        resources:
+          requests:
+            cpu: "500m"
+            memory: "1Gi"
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: profile-ingress
+  namespace: avd-profile-prod
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: profile.devopstrio.co.uk
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: profile-api-svc
+            port:
+              number: 80

@@ -1,0 +1,62 @@
+name: 'AVD User Profile CD'
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'apps/**'
+      - 'backend/**'
+      - 'terraform/**'
+      - '.github/workflows/release.yml'
+
+jobs:
+  validate-and-test:
+    name: 'Profile Logic Validation'
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Source
+      uses: actions/checkout@v3
+
+    - name: Run Pytest
+      run: |
+        pip install pytest fastapi httpx
+        pytest tests/
+
+  build-and-push:
+    name: 'Platform Release'
+    needs: validate-and-test
+    runs-on: ubuntu-latest
+    steps:
+    - name: Azure CLI Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Build & Push Profile API
+      run: |
+        az acr login --name acrprofile
+        docker build -t acrprofile.azurecr.io/devopstrio/profile-api:${{ github.sha }} ./backend
+        docker push acrprofile.azurecr.io/devopstrio/profile-api:${{ github.sha }}
+
+    - name: Build & Push Profile Engine
+      run: |
+        docker build -t acrprofile.azurecr.io/devopstrio/profile-engine:${{ github.sha }} ./apps/profile-engine
+        docker push acrprofile.azurecr.io/devopstrio/profile-engine:${{ github.sha }}
+
+  aks-rollout:
+    name: 'Platform Deployment'
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+    - name: AKS Set Context
+      uses: azure/aks-set-context@v3
+      with:
+        resource-group: 'rg-avd-user-profile-prd'
+        cluster-name: 'aks-avd-user-profile-prd'
+
+    - name: Helm Upgrade
+      run: |
+        helm upgrade --install avd-user-profile ./helm/avd-user-profile \
+        --namespace avd-profile-prod --create-namespace \
+        --set api.image.tag=${{ github.sha }}
