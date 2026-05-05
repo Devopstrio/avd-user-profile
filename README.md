@@ -1,15 +1,19 @@
-﻿<div align="center">
+<div align="center">
 
-<img src="https://raw.githubusercontent.com/Devopstrio/.github/main/assets/Browser_logo.png" height="90" alt="Devopstrio Logo" />
+<img src="https://raw.githubusercontent.com/Devopstrio/.github/main/assets/Browser_logo.png" height="150" alt="AVD User Profile Logo" />
 
-<h1>Azure Virtual Desktop (AVD) User Profile Platform</h1>
+<h1>AVD User Profile Platform</h1>
 
-<p><strong>Resilient, High-Performance, Secure, Multi-Region Profile Orchestration & Storage Governance</strong></p>
+<p><strong>The Institutional-Grade Platform for Standardized Profile Foundations, FSLogix Governance, and Multi-Cloud EUC Ecosystems.</strong></p>
 
-[![Solution](https://img.shields.io/badge/Stack-FSLogix-522c72?style=for-the-badge&labelColor=000000)](https://devopstrio.co.uk/)
-[![Storage](https://img.shields.io/badge/Engine-Azure_Files-0078d4?style=for-the-badge&logo=microsoftazure&labelColor=000000)](https://devopstrio.co.uk/)
-[![Resilience](https://img.shields.io/badge/HA-Multi_Region-success?style=for-the-badge&labelColor=000000)](https://devopstrio.co.uk/)
-[![Logic](https://img.shields.io/badge/Automation-Profile_Repair-962964?style=for-the-badge&labelColor=000000)](/apps/profile-engine)
+[![Standard: EUC-Excellence](https://img.shields.io/badge/Standard-EUC--Excellence-blue.svg?style=for-the-badge&labelColor=000000)]()
+[![Status: Production--Ready](https://img.shields.io/badge/Status-Production--Ready-emerald.svg?style=for-the-badge&labelColor=000000)]()
+[![Focus: Secure--Profile--Orchestration](https://img.shields.io/badge/Focus-Secure--Profile--Orchestration-indigo.svg?style=for-the-badge&labelColor=000000)]()
+
+<br/>
+
+> **"Industrializing user profiles to automate digital workplace foundations."** 
+> **AVD User Profile Platform** is an enterprise-grade platform designed to provide a secure, measurable, and highly automated foundation for global virtual desktop operations. It orchestrates the complex lifecycle of user personas—from automated FSLogix container provisioning and multi-region storage reconciliation to high-throughput profile intelligence and unified EUC auditing.
 
 </div>
 
@@ -17,21 +21,17 @@
 
 ## 🏛️ Executive Summary
 
-The **AVD User Profile Platform** is a flagship enterprise foundation designed to deliver a high-performance, resilient, and secure roaming profile experience for Azure Virtual Desktop (AVD) environments. In a modern EUC (End-User Computing) ecosystem, the user profile is the soul of the digital workplace. Slow logins, profile corruption, and storage latency are the primary drivers of user frustration and helpdesk volume. This platform eliminates these challenges through automated **FSLogix** management and multi-region storage orchestration.
+Fragmented profile storage and manual FSLogix orchestration are strategic operational liabilities; lack of a standardized profile framework is a primary barrier to organizational engineering maturity. Organizations fail to scale their virtual desktops not because of a lack of compute, but because of fragmented evaluation standards, lack of automated profile reconciliation, and an inability to orchestrate persona planes with operational precision.
 
-By leveraging a sophisticated set of **Profile, Storage, and Recovery Engines**, the platform automates the entire lifecycle—from the provision of high-performance **Azure NetApp Files** volumes to the proactive detection and repair of corrupted VHDX containers. It ensures that global users experience instantaneous logins through optimized container attaching and advanced cross-region replication strategies, providing a seamless experience even during regional outages.
-
-### Strategic Business Outcomes
-- **Instantaneous User Productivity**: Deliver login times under 20 seconds through optimized FSLogix container management and high-throughput storage tiering.
-- **Uncompromised Data Resilience**: Implement automated multi-region DR for user profiles, ensuring that personal settings and data are preserved and accessible across Azure geography.
-- **Automated Operational Governance**: Reduce EUC support tickets by up to 40% through self-healing profile repair logic and proactive capacity forecasting.
-- **Enterprise-Grade Security**: Enforce Zero-Trust data protection with AES-256 encryption-at-rest, identity-based ACLs, and automated snapshot-based recovery points.
+This platform provides the **Profile Intelligence Plane**. It implements a complete **AVD-User-Profile-as-Code Framework**, enabling CTOs and EUC Architects to manage global user foundations as first-class citizens. By automating the identification of profile regressions through real-time telemetry analysis and orchestrating the provisioning of secure performance-driven storage policies, we ensure that every organizational persona—from core office workers to edge engineering contractors—is provisioned by default, audited for history, and strictly aligned with institutional EUC frameworks.
 
 ---
 
-## 🏗️ Technical Architecture Details
+## 📐 Architecture Storytelling: Principal Reference Models
 
-### 1. High-Level Profile Lifecycle Architecture
+### 1. Principal Architecture: Global Profile Lifecycle & Intelligence Plane
+This diagram illustrates the high-level relationship between the Session Host, the FSLogix Agent, and the underlying Storage Foundation (Azure Files, ANF). It defines the bridge between virtual sessions and the user persona substrate.
+
 ```mermaid
 graph TD
     User[Session Host] --> FSLogix[FSLogix Agent]
@@ -54,7 +54,9 @@ graph TD
     Rec --> Backup[Snapshot Repository]
 ```
 
-### 2. Login Attach Workflow
+### 2. The Profile Lifecycle Flow (Attach & Tiering)
+The continuous path of a user persona from initial login trigger and VHDX mount to automated storage tiering and ephemeral cleanup. This ensures zero-interruption operations through dependency-aware login flows.
+
 ```mermaid
 sequenceDiagram
     participant User as Session Host
@@ -70,48 +72,42 @@ sequenceDiagram
     FS->>User: Profile Subsystem Active
 ```
 
-### 3. Profile Repair Lifecycle
+**Contractor Ephemeral Profile Model:**
 ```mermaid
 graph TD
-    Alert[Corruption Detected] --> Backup[Verify Latest Snapshot]
-    Backup --> Repair[Trigger Repair-VHDX Task]
-    Repair --> Verify[Login Simulation Test]
-    Verify --> Resume[Return to Fleet]
+    Start[Login] --> Create[In-Memory Profile]
+    Create --> Work[User Session]
+    Work --> Purge[Logout Cleanup]
 ```
 
-### 4. Backup & Point-in-Time Restore Flow
+**Storage Tiering Lifecycle:**
+```mermaid
+graph TD
+    Active[Hot Tier] --> Age[90 Days Inactive]
+    Age --> Cold[Cool Tier Archival]
+```
+
+### 3. Distributed Profile Topology (Global Regions & Sync)
+Strategically orchestrating standardized profiles across global regions (UK South, US East) and multi-tenant shares, providing a unified institutional view of persona readiness.
+
+```mermaid
+graph TD
+    Global[Global Control Plane]
+    Global --> UK[UK South Node]
+    Global --> US[US East Node]
+```
+
+**Cross-Region Replication Flow:**
 ```mermaid
 graph LR
-    Snap[Volume Snapshot] --> Vault[Recovery Services Vault]
-    Vault --> Restore[Target Recovery Point]
-    Restore --> Mount[Re-attach to User]
+    Write[Local Write] --> Block[Block Level Diff]
+    Block --> Network[Sync over Global VNET]
+    Network --> Remote[Remote Volume Update]
 ```
 
-### 5. Capacity Forecast Workflow
-```mermaid
-graph TD
-    Metric[Historical Volume Growth] --> AI[Analytics Engine]
-    AI --> Forecast[Predict Exhaustion Date]
-    Forecast --> Resize[Auto-Expand Quota]
-```
+### 4. Governance Hub & Control Plane Flow
+Executing complex logic for securing the bridge between user requests and storage volumes, ensuring every attach is authorized, capacity is forecasted, and executive oversight is maintained.
 
-### 6. Security Trust Boundary
-```mermaid
-graph TD
-    User[Session Host] --> RBAC[Identity-Based ACLs]
-    RBAC --> Encr[AES-256 Encryption Layer]
-    Encr --> Data[VHDX Container]
-```
-
-### 7. AVD Multi-Region Topology
-```mermaid
-graph LR
-    Hub[Central Management] --> UKS[UK South Hub]
-    Hub --> UKW[UK West Hub]
-    UKS <--> |Sync| UKW
-```
-
-### 8. API Request Lifecycle
 ```mermaid
 graph TD
     Call[GET /profiles] --> JWT[Auth Verify]
@@ -120,7 +116,61 @@ graph TD
     Cache --> Response[JSON Posture]
 ```
 
-### 9. Multi-Tenant Capacity Model
+**Capacity Forecast Workflow:**
+```mermaid
+graph TD
+    Metric[Historical Volume Growth] --> AI[Analytics Engine]
+    AI --> Forecast[Predict Exhaustion Date]
+    Forecast --> Resize[Auto-Expand Quota]
+```
+
+**Executive Governance Workflow:**
+```mermaid
+graph TD
+    Cost[Usage Analysis] --> CISO[CISO Review]
+    CISO --> Optim[Tiering Policy Update]
+```
+
+### 5. Multi-Cloud Profile Federation & Global Topology
+Automatically managing unified profile standards across global hub-spoke architectures and diverse cloud regions, ensuring institutional data residency and privacy boundaries by default.
+
+```mermaid
+graph LR
+    Hub[Central Management] --> UKS[UK South Hub]
+    Hub --> UKW[UK West Hub]
+    UKS <--> |Sync| UKW
+```
+
+### 6. Encryption & Perimeter Protection Flow (Security Trust Boundary)
+Managing the lifecycle of a profile request, automatically enforcing institutional AES-256 encryption and identity-based ACLs as required by security policy, ensuring zero-latency security confidence.
+
+```mermaid
+graph TD
+    User[Session Host] --> RBAC[Identity-Based ACLs]
+    RBAC --> Encr[AES-256 Encryption Layer]
+    Encr --> Data[VHDX Container]
+```
+
+### 7. Institutional Profile Maturity Scorecard (SLA Measurement)
+Grading organizational performance based on key indicators: Attach Latency (Login Speed), Profile Health Index, and SLA Compliance Scores.
+
+```mermaid
+graph TD
+    Login[Login Event] --> Time[Calculate Attach Duration]
+    Time --> SLA[Compliance Check < 10s]
+```
+
+### 8. Identity & RBAC for Profile Governance
+Managing fine-grained access to profile shares, provisioning workers, and audit logs between Global Holding Companies and Business Unit shares.
+
+```mermaid
+graph LR
+    Entra[Microsoft Entra ID] --> SMB[SMB Auth]
+    SMB --> NTFS[NTFS Permissions]
+    NTFS --> Access[Profile Mount]
+```
+
+**Multi-Tenant Capacity Model:**
 ```mermaid
 graph TD
     Org[Enterprise]
@@ -129,14 +179,34 @@ graph TD
     BU1 --> Stats[Quota: 10TB]
 ```
 
-### 10. Monitoring & Telemetry Flow
+### 9. IaC Deployment: AVD-User-Profile-as-Code Framework
+Using modular CI/CD pipelines to deploy and manage the versioned distribution of the profile landing zones, storage tiers, and validation fleets.
+
 ```mermaid
 graph LR
-    Agent[Host Agent] --> Metrics[Attach Latency]
-    Metrics --> Desk[Ops Dashboard]
+    Commit[Storage Change] --> Lint[Terraform Scan]
+    Lint --> Apply[Volume Provisioning]
 ```
 
-### 11. Disaster Recovery Topology
+### 10. AIOps Profile Drift & Risk Validation Flow
+Using advanced analytics to identify sudden surges in attach latency, unauthorized profile changes, or unusual delivery pattern changes that could result in institutional risk or downtime.
+
+```mermaid
+graph TD
+    Alert[Corruption Detected] --> Backup[Verify Latest Snapshot]
+    Backup --> Repair[Trigger Repair-VHDX Task]
+    Repair --> Verify[Login Simulation Test]
+    Verify --> Resume[Return to Fleet]
+```
+
+**Corruption Remediation Workflow:**
+```mermaid
+graph LR
+    Detect[I/O Error] --> Event[Trigger Recovery Engine]
+    Event --> Restore[Snapshot Rollback -1h]
+```
+
+**Disaster Recovery Topology:**
 ```mermaid
 graph TD
     Primary[Azure Files: Active] --> Rep[CRR Replication]
@@ -144,83 +214,94 @@ graph TD
     Primary -.->|Regional Failure| Promotion[Secondary Promote to RW]
 ```
 
-### 12. Cross-Region Replication Flow
+### 11. Metadata Lake for Forensic Profile Audit
+Storing long-term records of every profile integration event (metadata), every snapshot executed, and every live stream telemetry for institutional record-keeping and forensic analysis.
+
 ```mermaid
 graph LR
-    Write[Local Write] --> Block[Block Level Diff]
-    Block --> Network[Sync over Global VNET]
-    Network --> Remote[Remote Volume Update]
+    Agent[Host Agent] --> Metrics[Attach Latency]
+    Metrics --> Desk[Ops Dashboard]
 ```
 
-### 13. Identity Federation Model
+**Backup & Restore Flow:**
 ```mermaid
 graph LR
-    Entra[Microsoft Entra ID] --> SMB[SMB Auth]
-    SMB --> NTFS[NTFS Permissions]
-    NTFS --> Access[Profile Mount]
+    Snap[Volume Snapshot] --> Vault[Recovery Services Vault]
+    Vault --> Restore[Target Recovery Point]
+    Restore --> Mount[Re-attach to User]
 ```
 
-### 14. Storage Tiering Lifecycle
-```mermaid
-graph TD
-    Active[Hot Tier] --> Age[90 Days Inactive]
-    Age --> Cold[Cool Tier Archival]
-```
+---
 
-### 15. CI/CD Infrastructure Pipeline
-```mermaid
-graph LR
-    Commit[Storage Change] --> Lint[Terraform Scan]
-    Lint --> Apply[Volume Provisioning]
-```
+## 🏛️ Core Governance Pillars
 
-### 16. Executive Governance Workflow
-```mermaid
-graph TD
-    Cost[Usage Analysis] --> CISO[CISO Review]
-    CISO --> Optim[Tiering Policy Update]
-```
+1.  **Unified Foundation Coordination**: Maximizing resilience by centralizing all profile measurement through a single institutional plane.
+2.  **Automated Profile Provisioning**: Eliminating "manual tracking" scenarios through proactive orchestration and pattern verification.
+3.  **Sequential Profile Intelligence**: Ensuring zero-interruption operations through dependency-aware login-driven data engineering.
+4.  **Zero-Trust Identity Protection**: Automatically enforcing identity-based access, SMB encryption, and policy evaluation across all assurance tiers.
+5.  **Autonomous Operations Logic**: Guaranteeing reliability through automated industry-specific effectiveness monitoring runbooks.
+6.  **Full Profile Auditability**: Immutable recording of every profile change and profile provision for institutional forensics.
 
-### 17. Contractor Ephemeral Profile Model
-```mermaid
-graph TD
-    Start[Login] --> Create[In-Memory Profile]
-    Create --> Work[User Session]
-    Work --> Purge[Logout Cleanup]
-```
+---
 
-### 18. Corruption Remediation Workflow
-```mermaid
-graph LR
-    Detect[I/O Error] --> Event[Trigger Recovery Engine]
-    Event --> Restore[Snapshot Rollback -1h]
-```
+## 🛠️ Technical Stack & Implementation
 
-### 19. Global Region Topology
-```mermaid
-graph TD
-    Global[Global Control Plane]
-    Global --> UK[UK South Node]
-    Global --> US[US East Node]
-```
+### Profile Engine & APIs
+*   **Framework**: Python 3.11+ / FastAPI.
+*   **Performance Engine**: Custom Python-based logic for multi-cloud storage reconciliation and DORA-style EUC metrics.
+*   **Integrations**: Native connectors for Azure Files, Azure NetApp Files, and FSLogix Agent.
+*   **Persistence**: PostgreSQL (Profile Ledger) and Redis (Live Attach State).
+*   **Auth Orchestrator**: Federated OIDC/SAML for least-privilege profile management access.
 
-### 20. SLA Measurement Flow
-```mermaid
-graph TD
-    Login[Login Event] --> Time[Calculate Attach Duration]
-    Time --> SLA[Compliance Check < 10s]
-```
+### Governance Dashboard (UI)
+*   **Framework**: React 18 / Vite.
+*   **Theme**: Dark, Slate, Indigo (Modern high-fidelity productivity aesthetic).
+*   **Visualization**: D3.js for delivery topologies and Recharts for ROI velocity analytics.
+
+### Infrastructure & DevOps
+*   **Runtime**: AWS EKS or Azure Kubernetes Service (AKS) for management plane.
+*   **Measurement Hub**: Managed event sourcing for immutable productivity timeline reconstruction.
+*   **IaC**: Modular Terraform for deploying the profile landing zone and validation fleet.
+
+---
+
+## 🏗️ IaC Mapping (Module Structure)
+
+| Module | Purpose | Real Services |
+| :--- | :--- | :--- |
+| **`infrastructure/profile_hub`** | Central management plane | EKS, PostgreSQL, Redis |
+| **`infrastructure/enforcers`** | Distributed profile provisioners | Azure, AWS, GCP APIs |
+| **`infrastructure/storage_pipes`** | Data Ingestion Hubs | Webhooks, Lambda |
+| **`infrastructure/auditing`** | Forensic modernization sinks | S3, Athena, Quicksight |
 
 ---
 
 ## 🚀 Deployment Guide
 
-### Terraform Orchestration
+### Local Principal Environment
 ```bash
-cd terraform/environments/prd
-terraform init
-terraform apply -auto-approve
+# Clone the AVD User Profile repository
+git clone https://github.com/devopstrio/avd-user-profile.git
+cd avd-user-profile
+
+# Configure environment
+cp .env.example .env
+
+# Launch the Profile stack
+make init
+
+# Trigger a mock profile update and automated guardrail validation simulation
+make simulate-profile
 ```
 
+Access the Management Portal at `http://localhost:3000`.
+
 ---
-<sub>&copy; 2026 Devopstrio &mdash; Engineering the Data Resilient Foundation for the Global Virtual Workforce.</sub>
+
+## 📜 License
+Distributed under the MIT License. See `LICENSE` for more information.
+
+---
+<div align="center">
+  <p>© 2026 Devopstrio. All rights reserved.</p>
+</div>
